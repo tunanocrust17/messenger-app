@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Explore Groups</title>
+</head>
+<body class="groups-page">
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- Foreground Content -->
+    <main>
+        <div class="content-box">
+            <h1>Groups Home</h1>
+            <h2></h2>
+            <ul>
+                <% usersGroups.forEach((userGroup) => { %>
+                    <li>
+                        <a href="/chats/<%= userGroup.group_id %>"><%= userGroup.group_name %></a>
+                    </li>
+                <% }) %>
+            </ul>
+            <h2>Explore New Groups:</h2>
+            <ul>
+                <% groups.forEach((group) => { %>
+                    <li>
+                        <a href="/chats/<%= group.group_id %>"><%= group.group_name %></a>
+                    </li>
+                <% }) %>
+            </ul>
+            <a href="logout" class="logout">Logout</a>
+        </div>
+    </main>
+
+    <!-- External JavaScript -->
+    <script src="/scripts/matrixRain.js"></script>
+</body>
+</html>

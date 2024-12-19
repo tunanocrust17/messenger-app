@@ -1,0 +1,161 @@
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: black; /* Background color */
+    font-family: 'Courier New', monospace;
+    color: #00ff41; /* Matrix green */
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Canvas - Matrix Rain Effect (Full screen background) */
+#matrixCanvas {
+    position: fixed; /* Keeps the canvas fixed */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Send it behind the content */
+}
+
+/* Main content on top of canvas */
+main {
+    position: absolute; /* Absolute positioning to stay on top of canvas */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Fine-tune centering */
+    z-index: 1; /* Ensure content stays on top */
+    color: #00ff41; /* Matrix green */
+    text-align: center; /* Center content */
+    padding: 20px; /* Add some spacing */
+}
+
+.mainBox {
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    border: 1px solid #00FF00; /* Green border for the Matrix vibe */
+    color: #00FF00; /* Matrix green text */
+    padding: 1.5rem; /* Padding inside the box */
+    border-radius: 8px; /* Optional: Rounded corners for a softer look */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Optional: Subtle green glow */
+    width: 90%; /* Responsive width */
+    max-width: 600px; /* Maximum width */
+    margin: 2rem auto; /* Center the box horizontally */
+    text-align: center; /* Center-align the text */
+    position: relative; /* Ensures it's above the canvas */
+    z-index: 1; /* Ensures it stays above the canvas */
+}
+
+/* Styling for links and buttons */
+a {
+    color: #00ff41;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+}
+
+.logout, .login, .join {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 2px solid #00ff41;
+    color: #00ff41;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41;
+    transition: all 0.3s ease;
+}
+
+.logout:hover, .login:hover, .join:hover {
+    background-color: #00ff41;
+    color: black;
+    box-shadow: 0 0 15px #00ff41, 0 0 30px #00ff41;
+}
+
+/* General input styling */
+input {
+    background-color: black; /* Dark background */
+    border: 1px solid #00FF00; /* Matrix green border */
+    color: #00FF00; /* Matrix green text */
+    font-family: monospace; /* Retro Matrix-style font */
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-radius: 4px; /* Slight rounded corners */
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Subtle green glow */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Input focus effect */
+input:focus {
+    border-color: #00FF00; /* Bright green border */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8); /* Stronger glow when focused */
+}
+
+/* Placeholder text styling */
+input::placeholder {
+    color: rgba(0, 255, 0, 0.6); /* Greenish placeholder text */
+}
+
+/* Style autofill for inputs (works for Chrome, Edge, Safari) */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px black inset !important; /* Force black background */
+    -webkit-text-fill-color: #00FF00 !important; /* Matrix green text */
+    border: 1px solid #00FF00; /* Green border */
+    transition: background-color 5000s ease-in-out 0s; /* Smooth autofill fix */
+}
+
+/* Autofill when focused */
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px black inset !important;
+    -webkit-text-fill-color: #00FF00 !important;
+    border-color: #00FF00; /* Ensure border color remains green */
+}
+
+
+/*********** GROUPS PAGE ***********/
+
+.content-box {
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    border: 1px solid #00FF00; /* Green border for the Matrix vibe */
+    color: #00FF00; /* Matrix green text */
+    padding: 1.5rem; /* Padding inside the box */
+    border-radius: 8px; /* Optional: Rounded corners for a softer look */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Optional: Subtle green glow */
+    width: 90vw; /* Almost the full width (90% of viewport width) */
+    height: 80vh; /* Almost the full height (90% of viewport height) */
+    max-width: 95%; /* Maximum width to avoid overflowing on larger screens */
+    max-height: 85%;
+    margin: 2rem auto; /* Center the box horizontally */
+    text-align: center; /* Center-align the text */
+    position: relative; /* Ensures it's above the canvas */
+    z-index: 1; /* Ensures it stays above the canvas */
+}
+
+body.groups-page h1, 
+body.groups-page h2, 
+body.groups-page ul {
+    margin: 10px 0;
+    text-align: center;
+    font-family: 'Courier New', monospace; /* Matrix-like font */
+}
+
+body.groups-page ul {
+    list-style: none;
+    padding: 0;
+}
+
+body.groups-page ul li a {
+    color: #00ff00;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+body.groups-page ul li a:hover {
+    text-decoration: underline;
+}
+
+

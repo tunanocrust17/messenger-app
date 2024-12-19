@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/styles.css">
+    <title>Neo-Message</title>
+</head>
+<body>
+
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- Foreground Content -->
+    <main>
+        <div class="mainBox">
+            <% if(locals.user) { %>
+                <h1>Welcome, <%= user.fname %></h1>
+                <h2>Check out New Groups</h2>
+                <h3><a href="groups">Groups</a></h3>
+                <a href="logout" class="logout">Logout</a>
+            <% } else { %>
+                <h1>Welcome to Neo-Message</h1>
+                <p>Please <a href="login">login</a> or <a href="register">register</a> to use the app</p>
+            <% } %>
+        </div>
+    </main>
+
+    <!-- External JavaScript -->
+    <script src="/scripts/matrixRain.js"></script>
+</body>
+</html>

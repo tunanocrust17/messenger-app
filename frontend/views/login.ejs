@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Login</title>
+</head>
+<body>
+
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <main>
+        <div class="mainBox">
+            <h1>Login to Messenger</h1>
+            <form action="/login" method="post">
+                <label for="username">Username</label>
+                <input name="username" id="username" placeholder="username" type="text">
+                <label for="password">Password</label>
+                <input name="password" id="password" placeholder="password" type="text">
+                <button class="login">Login</button>
+            </form>
+        </div>
+    </main>
+
+        <!-- External JavaScript -->
+        <script src="/scripts/matrixRain.js"></script>
+</body>
+</html>

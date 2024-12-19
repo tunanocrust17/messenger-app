@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Neo-Messenger: <%=group.group_name %></title>
+</head>
+<body>
+    <h1> <%= group.group_name %></h1>
+
+    <% if( locals.user && isMember) { %>
+        <h2>it works?</h2>
+    <% } else { %>
+        <h2>Answer the question below to join the group:</h2>
+        <h2><%= group.group_secret_phrase %></h2>
+        <form action="" method="post">
+            <label for="answer">Your guess:</label>
+            <input type="text" name="answer" id="answer" placeholder="What's your guess">
+            <button class="join">Join</button>
+        </form>
+        <p><%= user.username %></p>
+        <% } %>
+</body>
+</html>
