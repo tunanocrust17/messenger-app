@@ -41,11 +41,26 @@ async function isMember(groupID, userID) {
     return rows.length > 0
 }
 
+async function getGroupAnswer(groupID) {
+    const value = [groupID]
+    const query = 'SELECT group_answer FROM groups WHERE id = $1'
+    const {rows} = await pool.query(query, value)
+    return rows[0]
+}
+
+async function addUserToGroup(groupID, userID) {
+    const values = [groupID, userID]
+    const query = 'INSERT INTO group_memberships (group_id, user_id) VALUES ($1, $2)'
+    await pool.query(query, values)
+}
+
 module.exports = {
     createUser,
     getGroups,
     getUsersGroups,
     getUniqueGroups,
     getGroup,
-    isMember
+    getGroupAnswer,
+    isMember,
+    addUserToGroup
 }

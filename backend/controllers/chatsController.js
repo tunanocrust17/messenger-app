@@ -21,6 +21,28 @@ class chatsController {
             console.log(err)
         }
     }
+
+    static async joinGroup (req, res) {
+        try {
+
+            const userAnswer = req.body.answer.toString()
+            const groupId = req.params.id
+            const groupAnswer = await queries.getGroupAnswer(groupId)
+            
+            if(userAnswer === groupAnswer.group_answer){
+                const userID = req.user.id
+                await queries.addUserToGroup(groupId, userID)
+
+                res.status(200).json({success: true})
+
+            } else {
+                res.status(400).json({success: false, message: "Incorrect answer"})
+            }
+        } catch(err) {
+            console.log(err)
+            res.status(500).json({success: false, message: "Internal server error"})
+        }
+    }
 }
 
 module.exports = {
