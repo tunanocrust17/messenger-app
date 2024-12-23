@@ -158,4 +158,41 @@ body.groups-page ul li a:hover {
     text-decoration: underline;
 }
 
+/* ------ STYLING FOR ALERT ON CHATS PAGE ------ */
+.alert {
+    padding: 15px;
+    margin: 20px 0;
+    border: 2px solid #0aff0a; /* Neon green */
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace; /* Techy font */
+    background: rgba(0, 0, 0, 0.8); /* Translucent black */
+    color: #0aff0a; /* Neon green text */
+    box-shadow: 0 0 10px #0aff0a; /* Neon glow effect */
+    text-shadow: 0 0 5px #0aff0a; /* Neon text effect */
+}
+
+.alert-matrix {
+    animation: matrixGlow 1.5s infinite alternate; /* Glow animation */
+}
+
+/* Glow animation */
+@keyframes matrixGlow {
+    0% {
+        box-shadow: 0 0 5px #0aff0a;
+    }
+    100% {
+        box-shadow: 0 0 20px #0aff0a;
+    }
+}
+
+/* Make the alert more dynamic when it appears/disappears */
+.alert.hidden {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.alert.show {
+    opacity: 1;
+}
+
 
