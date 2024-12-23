@@ -7,19 +7,31 @@
     <title>Neo-Messenger: <%=group.group_name %></title>
 </head>
 <body>
-    <h1> <%= group.group_name %></h1>
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrixCanvas"></canvas>
+    <main>
+        <div class="content-box">
+            <h1> <%= group.group_name %></h1>
 
-    <% if( locals.user && isMember) { %>
-        <h2>it works?</h2>
-    <% } else { %>
-        <h2>Answer the question below to join the group:</h2>
-        <h2><%= group.group_secret_phrase %></h2>
-        <form action="" method="post">
-            <label for="answer">Your guess:</label>
-            <input type="text" name="answer" id="answer" placeholder="What's your guess">
-            <button class="join">Join</button>
-        </form>
-        <p><%= user.username %></p>
-        <% } %>
+            <% if( locals.user && isMember) { %>
+                <h2>it works?</h2>
+            <% } else { %>
+                <h2>Answer the question below to join the group:</h2>
+                <h2><%= group.group_secret_phrase %></h2>
+                <form id="joinGroupForm" action="/chats/<%=group.id%>/join" method="POST">
+                    <label for="answer">Your guess:</label>
+                    <input type="text" name="answer" id="answer" placeholder="What's your guess">
+                    <button type="submit" class="join">Join</button>
+                </form>
+                <div id="errorMessage" class="alert alert-matrix" style="display: none;"></div>
+                <p><%= user.username %></p>
+                <% } %>
+        </div>
+    </main>
+
+    <!-- External JavaScript -->
+    <script src="/scripts/matrixRain.js"></script>
+    <script src="/scripts/refreshOnJoin.js"></script>
+
 </body>
 </html>
