@@ -54,6 +54,19 @@ async function addUserToGroup(groupID, userID) {
     await pool.query(query, values)
 }
 
+async function postMessage(groupID, userID, message) {
+    const values = [groupID, userID, message]
+    const query = 'INSERT INTO messages (group_id, user_id, content) VALUES ($1, $2, $3)'
+    await pool.query(query, values)
+}
+
+async function getGroupsMessages(groupID) {
+    const value = [groupID]
+    const query = 'SELECT m.id, m.content, m.created_at, u.username FROM messages m JOIN users u ON m.user_id = u.id WHERE m.group_id = $1 ORDER BY m.created_at DESC'
+    const {rows} = await pool.query(query, value)
+    return rows
+}
+
 module.exports = {
     createUser,
     getGroups,
@@ -62,5 +75,7 @@ module.exports = {
     getGroup,
     getGroupAnswer,
     isMember,
-    addUserToGroup
+    addUserToGroup,
+    postMessage,
+    getGroupsMessages
 }

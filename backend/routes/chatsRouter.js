@@ -11,6 +11,10 @@ chatsRouter.post('/:id/join', isAuth, (req, res) => {
   chatsController.joinGroup(req, res)
 })
 
+chatsRouter.post('/:id/postMessage', isAuth, (req, res) => {
+  chatsController.postMessage(req, res)
+})
+
 module.exports = {
     chatsRouter
 }

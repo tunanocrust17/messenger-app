@@ -10,12 +10,14 @@ class chatsController {
 
             const group = await queries.getGroup(groupID);
             const isMember = await queries.isMember(groupID, userID)
+            const messages = await queries.getGroupsMessages(groupID)
             console.log(isMember)
 
             res.render('chats', {
                 group: group,
                 user: req.user,
-                isMember: isMember
+                isMember: isMember,
+                messages: messages
             })           
         } catch (err) {
             console.log(err)
@@ -41,6 +43,22 @@ class chatsController {
         } catch(err) {
             console.log(err)
             res.status(500).json({success: false, message: "Internal server error"})
+        }
+    }
+
+    static async postMessage (req, res) {
+        try {
+            const userMessage = req.body.userMessage.toString()
+            console.log(userMessage)
+            const groupID = req.params.id
+            const userID = req.user.id
+
+            await queries.postMessage(groupID, userID, userMessage)
+
+            res.status(200).json({success:true})
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({success: false, message: 'Failed to post message'})
         }
     }
 }
