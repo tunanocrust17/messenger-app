@@ -69,6 +69,17 @@ app.get('/protected', isAuth, isAdmin, (req, res) => {
     res.send('welcome to the protected route');
 });
 
+// Helper Function for Formatting Dates
+app.locals.formatDateTime = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', {
+        weekday: 'long',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    });
+};
+
 
 /**
  * -------------- Server Initialization ----------------
