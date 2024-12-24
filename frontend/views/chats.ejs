@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/styles.css">
     <title>Neo-Messenger: <%=group.group_name %></title>
 </head>
-<body>
+<body class="chats-page">
     <!-- Matrix Rain Canvas -->
     <canvas id="matrixCanvas"></canvas>
     <main>
@@ -15,6 +15,31 @@
 
             <% if( locals.user && isMember) { %>
                 <h2>it works?</h2>
+
+                <form id="postMessageForm" action="/chats/<%= group.id %>/postMessage" method="POST">
+                    <label for="userMessage">Message:</label>
+                    <input type="text" name="userMessage" id="userMessage" placeholder="What's your message?">
+                    <button type="submit" class="join">Post</button>
+                </form>
+
+                <div class="messagesContainer">
+                    <% if(messages) { %>
+                        <% messages.forEach((message)=>{ %>
+                            <li class="message-item">
+                                <a href="" class="message-link">
+                                    <div class="message-header">
+                                        <span class="username">From: <%= message.username %></span>
+                                        <span class="date">Date: <%= formatDateTime(message.created_at) %></span>
+                                    </div>
+                                    <div class="message-content">
+                                        <span>Message: <%= message.content %> </span>
+                                    </div>
+                                </a>
+                            </li>
+                        <% }) %>
+                    <% } %>
+                </div>
+
             <% } else { %>
                 <h2>Answer the question below to join the group:</h2>
                 <h2><%= group.group_secret_phrase %></h2>
@@ -32,6 +57,7 @@
     <!-- External JavaScript -->
     <script src="/scripts/matrixRain.js"></script>
     <script src="/scripts/refreshOnJoin.js"></script>
+    <script src="/scripts/refreshOnPost.js"></script>
 
 </body>
 </html>
