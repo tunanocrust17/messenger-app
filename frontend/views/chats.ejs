@@ -14,31 +14,37 @@
             <h1> <%= group.group_name %></h1>
 
             <% if( locals.user && isMember) { %>
-                <h2>it works?</h2>
-
+ 
                 <form id="postMessageForm" action="/chats/<%= group.id %>/postMessage" method="POST">
-                    <label for="userMessage">Message:</label>
+                    <label for="userMessage"></label>
                     <input type="text" name="userMessage" id="userMessage" placeholder="What's your message?">
                     <button type="submit" class="join">Post</button>
                 </form>
 
-                <div class="messagesContainer">
-                    <% if(messages) { %>
+                <% if(messages.length > 0) { %>
+                    <div class="messagesContainer">
+                   
                         <% messages.forEach((message)=>{ %>
                             <li class="message-item">
-                                <a href="" class="message-link">
+                                <div class="message-link">
                                     <div class="message-header">
-                                        <span class="username">From: <%= message.username %></span>
+                                        <span class="username"><%= message.username %></span>
                                         <span class="date">Date: <%= formatDateTime(message.created_at) %></span>
                                     </div>
                                     <div class="message-content">
-                                        <span>Message: <%= message.content %> </span>
+                                        <span><%= message.content %> </span>
                                     </div>
-                                </a>
+                                </div>
+                                <% if(isAdmin || message.user_id === user.id) { %>
+                                    <div class="message-buttons">
+                                        <a href="">Delete</a>
+                                    </div>
+                                    
+                                <% } %>
                             </li>
                         <% }) %>
-                    <% } %>
-                </div>
+                    </div>
+                <% } %>    
 
             <% } else { %>
                 <h2>Answer the question below to join the group:</h2>
