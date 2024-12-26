@@ -41,6 +41,13 @@ async function isMember(groupID, userID) {
     return rows.length > 0
 }
 
+async function isAdmin(groupID, userID) {
+    const values = [groupID, userID]
+    const query = 'SELECT * FROM group_admins WHERE group_id = $1 AND user_id = $2'
+    const {rows} = await pool.query(query, values)
+    return rows.length > 0
+}
+
 async function getGroupAnswer(groupID) {
     const value = [groupID]
     const query = 'SELECT group_answer FROM groups WHERE id = $1'
@@ -62,7 +69,7 @@ async function postMessage(groupID, userID, message) {
 
 async function getGroupsMessages(groupID) {
     const value = [groupID]
-    const query = 'SELECT m.id, m.content, m.created_at, u.username FROM messages m JOIN users u ON m.user_id = u.id WHERE m.group_id = $1 ORDER BY m.created_at DESC'
+    const query = 'SELECT m.id, m.user_id, m.content, m.created_at, u.username FROM messages m JOIN users u ON m.user_id = u.id WHERE m.group_id = $1 ORDER BY m.created_at DESC'
     const {rows} = await pool.query(query, value)
     return rows
 }
@@ -75,6 +82,7 @@ module.exports = {
     getGroup,
     getGroupAnswer,
     isMember,
+    isAdmin,
     addUserToGroup,
     postMessage,
     getGroupsMessages
