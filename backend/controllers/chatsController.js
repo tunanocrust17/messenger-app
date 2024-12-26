@@ -6,17 +6,17 @@ class chatsController {
         try {
             const groupID = req.params.id;
             const userID = req.user.id
-            console.log(userID)
 
             const group = await queries.getGroup(groupID);
             const isMember = await queries.isMember(groupID, userID)
+            const isAdmin = await queries.isAdmin(groupID, userID)
             const messages = await queries.getGroupsMessages(groupID)
-            console.log(isMember)
 
             res.render('chats', {
                 group: group,
                 user: req.user,
                 isMember: isMember,
+                isAdmin: isAdmin,
                 messages: messages
             })           
         } catch (err) {
